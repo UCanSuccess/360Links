@@ -1,0 +1,88 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">Verify Detail</h4>
+
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: YOUR CONTENT HERE -->
+<div class="container-fluid container-fullw bg-white">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- /// controller:  'BusinessCtrl' -  localtion: assets/js/controllers/businessCtrl.js /// -->
+            <div ng-controller="VerifyDetailCtrl">
+            	<div class="panel panel-white">
+                    <div class="panel-body">
+                        <div class="pricing-table pricing-blue">
+                            <div class="col-lg-4 col-md-4 col-sm-12 ">
+                                <ul class="plan plan4">
+                                    <li class="plan-name">
+                                        Service From
+                                    </li>
+                                    <li class="plan-price">
+                                        <center>
+                                            <img ng-src="{{verify_detail.provider_profile}}" class="img-rounded img-responsive" alt="image" style="height:200px">
+                                        </center>
+                                    </li>
+                                    <li>
+                                        <strong>Name: </strong> {{verify_detail.provider_name}}
+                                    </li>                                    
+                                </ul>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12 ">
+                                <ul class="plan plan4">
+                                    <li class="plan-name">
+                                        Receiver
+                                    </li>
+                                    <li class="plan-price">
+                                        <center>
+                                            <img ng-src="{{verify_detail.receiver_profile}}" class="img-rounded img-responsive" alt="image" style="height:200px">
+                                        </center>
+                                    </li>
+                                    <li>
+                                        <strong>Name: </strong> {{verify_detail.receiver_name}}
+                                    </li>                                    
+                                </ul>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12 ">
+                                <ul class="plan plan4">
+                                    <li class="plan-name">
+                                        Service Image
+                                    </li>
+                                    <li class="plan-price">
+                                        <center>
+                                            <img ng-src="{{base_url+'/uploads/'+verify_detail.verify_img}}" class="img-rounded img-responsive" alt="image" style="height:200px">
+                                        </center>
+                                    </li>
+                                    <li>
+                                        <strong>Amount Spent: </strong> ${{verify_detail.amount_spent}}
+                                    </li>    
+                                    <li>
+                                        <strong>Business Name: </strong> {{verify_detail.business_name}}
+                                    </li>                                  
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <center>
+                                <p class="text-small">
+                                    Please remail rate for providers here.
+                                </p>
+                                <div class="margin-bottom-15 text-extra-large">
+                                    <uib-rating ng-model="verify_detail.rate" max="5" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null"></uib-rating>
+                                </div>
+                                <div class="well">
+                                    Rate: <b>{{verify_detail.rate}}</b>
+                                </div>
+                                <button class="btn btn-primary btn-wide" href="#" ng-click="verify(verify_detail.rate)" ng-show="verify_detail.status==0">
+                                    Verify
+                                </button>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end: YOUR CONTENT HERE -->

@@ -1,0 +1,46 @@
+<!-- start: MAIN NAVIGATION MENU -->
+<div class="navbar-title">
+    <span translate="sidebar.heading.NAVIGATION">Main Navigation</span>
+</div>
+<ul class="main-navigation-menu">
+    <li ng-class="{'active open':$state.includes('admin.business')}">
+        <a href="javascript:void(0)">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="B" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title"> Business </span><i class="icon-arrow"></i>
+                </div>
+            </div>
+        </a>
+        <ul class="sub-menu">
+            <li ui-sref-active="active" ng-class="{'active':$state.includes('admin.business.detail_business')}">
+                <a ui-sref="admin.business.index"> <span class="title"> Dashboard </span> </a>
+            </li>
+            <li ui-sref-active="active" ng-class="{'active':$state.includes('admin.business.verify_detail')}">
+                <a ui-sref="admin.business.verify"> <span class="title"> Verify </span> </a>
+            </li>
+        </ul>
+    </li>
+</ul>
+<!-- end: MAIN NAVIGATION MENU -->
+<!-- start: FEATURES -->
+<div class="navbar-title">
+    <span translate="sidebar.heading.FEATURES">Core Features</span>
+</div>
+<ul class="folders">
+    <li>
+        <a ui-sref="front.pages.user">
+            <div class="item-content">
+                <div class="item-media">
+                    <letter-icon data="FP" char-count="2" size="sm"></letter-icon>
+                </div>
+                <div class="item-inner">
+                    <span class="title"> Front Page </span>
+                </div>
+            </div>
+        </a>
+    </li>
+</ul>
+<!-- end: FEATURES -->

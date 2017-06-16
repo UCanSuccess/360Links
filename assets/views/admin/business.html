@@ -1,0 +1,73 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">Business Dashboard</h4>
+
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: YOUR CONTENT HERE -->
+<div class="container-fluid container-fullw bg-white">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- /// controller:  'BusinessCtrl' -  localtion: assets/js/controllers/businessCtrl.js /// -->
+            <div ng-controller="BusinessCtrl">
+            	<div class="panel panel-white">
+                    <div class="panel-body">
+                        <h5 class="over-title margin-bottom-15">Business <span class="text-bold">Table</span></h5>
+                        <table class="table table-stylish" id="sample-table-2">
+                            <thead>
+                                <tr>
+                                    <th class="center no-border">#</th>
+                                    <th class="no-border">Business Name</th>
+                                    <th class="no-border">Description</th>
+                                    <th class="no-border"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in business track by $index" style="cursor: pointer" ng-click="detailRow(item)">
+                                    <td class="center">{{$index+1}}</td>
+                                    <td class="hidden-xs">{{item.business_name}}</td>
+                                    <td>{{item.business_desc}}</td>
+                                    <td class="center">
+                                       	<button type="button" class="btn btn-red btn-wide btn-scroll btn-scroll-top ti-trash" ng-click="removeRow(item)">
+    	                                    <span>Remove</span>
+    	                                </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <fieldset>
+                            <legend>
+                                Add Business
+                            </legend>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                            Business Name
+                                        </label>
+                                        <input type="text" placeholder="Enter Business name" class="form-control" name="business_name" ng-model="new_business_name">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                            Description
+                                        </label>
+                                        <textarea placeholder="Enter Business Description" class="form-control" name="business_desc" ng-model="new_business_desc"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cetner">
+                                <button class="btn btn-primary btn-o btn-wide" ng-click="addBusiness(new_business_name, new_business_desc)">
+                                    Save
+                                </button>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end: YOUR CONTENT HERE -->

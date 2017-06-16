@@ -1,0 +1,235 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">MY PROFILE</h4>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: USER PROFILE -->
+<div class="container-fluid container-fullw bg-white">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- /// controller:  'UserCtrl' -  localtion: assets/js/controllers/userCtrl.js /// -->
+            <div ng-controller="UserCtrl">
+                <!-- start: USER TABSET -->
+                <uib-tabset class="tabbable">
+                    <!-- start: TAB OVERVIEW -->
+                    <uib-tab heading="Overview">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="user-left">
+                                    <div class="center">
+                                        <div flow-init="{singleFile:true}" flow-name="obj.flow" flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]">
+                                            <div class="user-image">
+                                                <div class="thumbnail">
+                                                    <img src="assets/images/default-user.png" alt="" ng-if="!obj.flow.files.length && noImage">
+                                                    <img ng-src="{{userInfo.avatar}}" alt="" ng-if="!obj.flow.files.length && !noImage">
+                                                    <img flow-img="obj.flow.files[0]" ng-if="obj.flow.files.length">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <h4>{{userInfo.name}}</h4>
+                                        <hr>
+                                        <div class="nav-menu">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="row space20">
+                                </div>
+                                <div class="row space20">
+                                    <table class="table table-condensed">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="3">General Information</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Name:</td>
+                                                <td>
+                                                    <a href>
+                                                        {{userInfo.name}}
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>email:</td>
+                                                <td>
+                                                    <a href>
+                                                        {{userInfo.email}}
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>phone:</td>
+                                                <td>{{userInfo.phone}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>              
+                                </div>                                                 
+                            </div>
+                        </div>
+                    </uib-tab>
+                    <!-- end: TAB OVERVIEW -->
+                    <!-- start: TAB EDIT ACCOUNT -->
+                    <uib-tab heading="Business" active="business">
+                        <form action="#" role="form" id="form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <legend>
+                                            My Business
+                                        </legend>
+                                        <v-accordion class="vAccordion--default" control="firstAccordionControl">
+                                            <v-pane ng-repeat="pane in my_business" expanded="$last">
+                                                <v-pane-header>
+                                                    <h5>{{ pane.header }}</h5>
+                                                </v-pane-header>
+                                                <v-pane-content>
+                                                    <div class="well">
+                                                        {{ pane.content.description }}
+                                                    </div>
+                                                    <div class="margin-bottom-30">
+                                                        <div class="margin-bottom-15 text-extra-large">
+                                                            <uib-rating ng-model="pane.content.rate" max="5" read-only="true"></uib-rating>
+                                                            <span class="label" ng-class="{'label-warning': pane.content.rate<2.5, 'label-info': pane.content.rate>=2.5 && pane.content.rate<4, 'label-success': pane.content.rate>=4}" ng-show="true">{{pane.content.rate}}</span>
+                                                        </div>
+                                                        <div class="well">                                                            
+                                                        </div>
+                                                    </div>
+                                                </v-pane-content>
+                                            </v-pane>
+                                        </v-accordion>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <legend>
+                                            Endorsed Business
+                                        </legend>
+                                        <v-accordion class="vAccordion--default" control="firstAccordionControl">
+                                            <v-pane ng-repeat="pane in endorsed_business" expanded="$last">
+                                                <v-pane-header>
+                                                    <h5>{{ pane.header }}</h5>
+                                                </v-pane-header>
+                                                <v-pane-content>
+                                                    <table class="table no-margin">
+                                                        <tbody>
+                                                            <tr ng-repeat="value in pane.content" style="cursor: pointer" ng-click="goToProfile(value)">
+                                                                <td class="center"><img alt="image" class="img-circle" ng-src="{{value.profile_url}}"></td>
+                                                                <td>
+                                                                <a href="#">
+                                                                    {{value.name}}
+                                                                </a></td>
+                                                                <td><span class="label " ng-class="{'label-warning': value.rate<2.5, 'label-info': value.rate>=2.5 && value.rate<4, 'label-success': value.rate>=4}">{{value.rate}}</span></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </v-pane-content>
+                                            </v-pane>
+                                        </v-accordion>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            
+                        </form>
+                    </uib-tab>
+                    <!-- end: TAB EDIT ACCOUNT -->
+                    <!-- start: TAB PROJECTS -->
+                    <uib-tab heading="Friends">
+                        <table class="table table-striped table-hover" id="sample-table-3">
+                            <thead>
+                                <tr>
+                                    <th class="center">Photo</th>
+                                    <th>Name</th>
+                                    <th class="hidden-xs">Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in friends" style="cursor: pointer" ng-click="visitFriend(item)">
+                                    <td class="center"><img ng-src="{{item.avatar}}" class="img-rounded img-avatar" alt="image" /></td>
+                                    <td>{{item.name}}</td>
+                                    <td class="hidden-xs"><a href="#" rel="nofollow" target="_blank"> {{item.email}} </a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </uib-tab>
+                    <!-- end: TAB PROJECTS -->
+                    <uib-tab heading="Verify">
+                        <div class="row">   
+                            <form action="http://localhost/index.php/apis/requireVerify" method="POST" enctype="multipart/form-data">             
+                            <div uploader="uploaderImages">
+                                <div class="">
+                                    <div class="col-md-3">
+                                        <h5>Select files</h5>
+                                        <div class="panel panel-white">                                            
+                                            <div class="panel-body" >
+                                                <div class="col-md-12"  ng-repeat="item in uploaderImages.queue">
+                                                    <div class="pull-left">
+                                                    <strong>{{ item.file.name }}</strong>
+                                                    <div ng-show="uploaderImages.isHTML5" ng-thumb="{ file: item._file, height: 100}"></div>
+                                                    </div>
+                                                    <button type="button" class="btn btn-danger btn-xs pull-right" ng-click="item.remove()">
+                                                        <span class="glyphicon glyphicon-trash"></span> Remove
+                                                    </button>
+                                                </div>
+                                                <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->                                                
+                                                <span class="btn btn-primary btn-o btn-file">
+                                                    Select an image file
+                                                    <input type="file" nv-file-select="selectFile()" uploader="uploaderImages" single name="file"/ required>
+                                                </span>
+                                                <div ng-show="uploaderImages.isHTML5" ng-thumb="{ file: uploaderImages.queue[0]._file, height: 100 , width:100}"></div>
+                                                
+                                                <br />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <label class="control-label">
+                                                Sevice From
+                                            </label>
+                                            <select class="cs-select cs-skin-elastic" name="provider" ng-model="provider" ng-options=" item.name for item in providers track by item.user_id" ng-value="provider.user_id" required="" ng-change="selectProvider(provider)">
+                                                <option value="" disabled=""> Select Provider </option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">
+                                                Business Type
+                                            </label>
+                                            <select class="cs-select cs-skin-elastic" name="business" ng-model="business_detail" ng-options=" item.name for item in business track by item.business_id" ng-value="business_detail.business_id" required="">
+                                                <option value="" disabled=""> Select Business </option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">
+                                                Amount Spent($)
+                                            </label>
+                                            <input type="hidden" ng-value="userInfo.user_id" name="receiver">
+                                            <input type="number" placeholder="Amount Spent" class="form-control" name="amount_spent" required>
+                                        </div>
+                                        <div class="form-action">
+                                            <input type="submit" value="Require Verify" name="submit" class="btn btn-primary">
+                                        </div>
+                                    </div>                                  
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                    </uib-tab>
+                </uib-tabset>
+                <div class="row">
+                    <a class="btn btn-primary btn-o btn-wide pull-left" href="#" ui-sref="admin.business.index" ng-show="userInfo.privileage==1">
+                        Go To AdminPanel
+                    </a>
+                    <a class="btn btn-primary btn-o btn-wide pull-right" href="#" ui-sref="front.pages.endorse">
+                        Endorse
+                    </a>                    
+                </div>
+                <!-- end: USER TABSET -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end: USER PROFILE -->

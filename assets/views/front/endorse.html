@@ -1,0 +1,47 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">Endorse Business</h4>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: USER PROFILE -->
+<div class="container-fluid container-fullw bg-white">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- /// controller:  'EndorseCtrl' -  localtion: assets/js/controllers/endorseCtrl.js /// -->
+            <div ng-controller="EndorseCtrl">
+                <div class="form-group" ng-init="selectBusiness = null">
+                    <label for="form-field-select-1">
+                        Skin Slide with dynamic options
+                    </label>
+                    <select class="cs-select cs-skin-elastic" ng-options="item.name for item in business" ng-model="selectBusiness" ng-change="searchBusiness(selectBusiness)">
+                        <option value="" disabled="">Select</option>
+                    </select>
+                </div>
+                <div class="">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th class="center">Photo</th>
+                                <th> Name </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in people" ng-click="goToProfile(item)" style="cursor: pointer">
+                                <td class="center">
+                                    <img ng-src="{{item.profile_url}}" class="img-rounded" alt="image">
+                                </td>
+                                <td>{{item.name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="text-right">
+                <a class="btn btn-primary btn-o btn-wide" href="#" ui-sref="front.pages.user">
+                    Back
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end: USER PROFILE -->

@@ -1,0 +1,48 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">Verify List</h4>
+
+    <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: YOUR CONTENT HERE -->
+<div class="container-fluid container-fullw bg-white">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- /// controller:  'BusinessCtrl' -  localtion: assets/js/controllers/businessCtrl.js /// -->
+            <div ng-controller="VerifyCtrl">
+            	<div class="panel panel-white">
+                    <div class="panel-body">
+                        <h5 class="over-title margin-bottom-15">Business <span class="text-bold">Table</span></h5>
+                        <table class="table table-stylish" id="sample-table-2">
+                            <thead>
+                                <tr>
+                                    <th class="center no-border">#</th>
+                                    <th class="no-border">Verify Image</th>
+                                    <th class="no-border">Business Name</th>
+                                    <th class="no-border">Service From</th>
+                                    <th class="no-border">Receiver</th>
+                                    <th class="no-border">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in verify_list track by $index" style="cursor: pointer" ng-click="detailRow(item)">
+                                    <td class="center">{{$index+1}}</td>
+                                    <td class="hidden-xs width-100"><img ng-src="{{base_url+'/uploads/'+item.verify_img}}" class="img-rounded img-responsive" alt="image"></td>
+                                    <td class="hidden-xs">{{item.business_name}}</td>
+                                    <td class="hidden-xs"><img ng-src="{{item.provider_profile}}" class="img-rounded img-avatar" alt="image"> &nbsp;&nbsp; {{item.provider_name}}</td>
+                                    <td><img ng-src="{{item.receiver_profile}}" class="img-rounded img-avatar" alt="image"> &nbsp;&nbsp; {{item.receiver_name}}</td>
+                                    <td class="hidden-xs">
+                                        <span class="label partition-red" ng-show="item.status==0">Not Verfied</span>
+                                        <span class="label partition-green" ng-show="item.status==1">Verified</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end: YOUR CONTENT HERE -->

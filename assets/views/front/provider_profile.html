@@ -1,0 +1,148 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper">
+    <h4 class="mainTitle no-margin">Provider's PROFILE</h4>
+</div>
+<!-- end: BREADCRUMB -->
+<!-- start: USER PROFILE -->
+<div class="container-fluid container-fullw bg-white">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- /// controller:  'providerCtrl' -  localtion: assets/js/controllers/userCtrl.js /// -->
+            <div ng-controller="providerCtrl">
+                <!-- start: USER TABSET -->
+                <uib-tabset class="tabbable">
+                    <!-- start: TAB OVERVIEW -->
+                    <uib-tab heading="Overview">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="user-left">
+                                    <div class="center">
+                                        <div class="user-image">
+                                            <div class="thumbnail">
+                                                <img src="assets/images/default-user.png" alt="" ng-if="!userInfo.avatar">
+                                                <img ng-src="{{userInfo.avatar}}" alt="" ng-if="userInfo.avatar">
+                                            </div>
+                                        </div>
+                                        <h4>{{userInfo.name}}</h4>
+                                        <hr>
+                                        <div class="nav-menu">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="row space20">
+                                </div>
+                                <div class="row space20">
+                                    <table class="table table-condensed">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="3">General Information</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Name:</td>
+                                                <td>
+                                                    <a href>
+                                                        {{userInfo.name}}
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>email:</td>
+                                                <td>
+                                                    <a href>
+                                                        {{userInfo.email}}
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>phone:</td>
+                                                <td>{{userInfo.phone}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>              
+                                </div>                                                 
+                            </div>
+                        </div>
+                    </uib-tab>
+                    <!-- end: TAB OVERVIEW -->
+                    <!-- start: TAB EDIT ACCOUNT -->
+                    <uib-tab heading="Business" active="business">
+                        <form action="#" role="form" id="form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <legend>
+                                            My Business
+                                        </legend>
+                                        <v-accordion class="vAccordion--default" control="firstAccordionControl">
+                                            <v-pane ng-repeat="pane in my_business" expanded="$last">
+                                                <v-pane-header>
+                                                    <h5>{{ pane.header }}</h5>
+                                                </v-pane-header>
+                                                <v-pane-content>
+                                                    <div class="well">
+                                                        {{ pane.content.description }}
+                                                    </div>
+                                                    <div class="margin-bottom-30">
+                                                        <div class="margin-bottom-15 text-extra-large">
+                                                            <uib-rating ng-model="pane.content.rate" max="5" read-only="true"></uib-rating>
+                                                            <span class="label" ng-class="{'label-warning': pane.content.rate<2.5, 'label-info': pane.content.rate>=2.5 && pane.content.rate<4, 'label-success': pane.content.rate>=4}" ng-show="true">{{pane.content.rate}}</span>
+                                                        </div>
+                                                        <div class="well">
+                                                            <button type="button" class="btn btn-widte btn-o btn-primary" ng-click="endorseBusiness(pane.content)">Endorse</button>
+                                                        </div>
+                                                    </div>
+                                                </v-pane-content>
+                                            </v-pane>
+                                        </v-accordion>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <legend>
+                                            Endorsed Business
+                                        </legend>
+                                        <v-accordion class="vAccordion--default" control="firstAccordionControl">
+                                            <v-pane ng-repeat="pane in endorsed_business" expanded="$last">
+                                                <v-pane-header>
+                                                    <h5>{{ pane.header }}</h5>
+                                                </v-pane-header>
+                                                <v-pane-content>
+                                                    <table class="table no-margin">
+                                                        <tbody>
+                                                            <tr ng-repeat="value in pane.content">
+                                                                <td class="center"><img alt="image" class="img-circle" ng-src="{{value.profile_url}}"></td>
+                                                                <td>
+                                                                <a href="#">
+                                                                    {{value.name}}
+                                                                </a></td>
+                                                                <td><span class="label " ng-class="{'label-warning': value.rate<2.5, 'label-info': value.rate>=2.5 && value.rate<4, 'label-success': value.rate>=4}">{{value.rate}}</span></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </v-pane-content>
+                                            </v-pane>
+                                        </v-accordion>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            
+                        </form>
+                    </uib-tab>
+                    <!-- end: TAB EDIT ACCOUNT -->
+                </uib-tabset>
+                <div class="text-right">
+                    <a class="btn btn-primary btn-o btn-wide" href="#" ui-sref="front.pages.user">
+                        Back
+                    </a>
+                </div>
+                <!-- end: USER TABSET -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end: USER PROFILE -->

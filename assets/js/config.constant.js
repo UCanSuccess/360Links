@@ -45,6 +45,7 @@ app.constant('JS_REQUIRES', {
         'selectCtrl': 'assets/js/controllers/selectCtrl.js',
         'wizardCtrl': 'assets/js/controllers/wizardCtrl.js',
         'loginCtrl' : 'assets/js/controllers/loginCtrl.js',
+        'adminloginCtrl' : 'assets/js/controllers/adminloginCtrl.js',
         'endorseCtrl' : 'assets/js/controllers/endorseCtrl.js',
         'providerCtrl' : 'assets/js/controllers/providerCtrl.js',
         'businessCtrl' : 'assets/js/controllers/businessCtrl.js',

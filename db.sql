@@ -28,8 +28,6 @@ CREATE TABLE `attachments` (
   PRIMARY KEY (`_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*Data for the table `attachments` */
-
 /*Table structure for table `business` */
 
 DROP TABLE IF EXISTS `business`;
@@ -42,10 +40,6 @@ CREATE TABLE `business` (
   PRIMARY KEY (`_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
-/*Data for the table `business` */
-
-insert  into `business`(`_id`,`business_name`,`business_desc`,`others`) values (1,'lawyerr','fff',NULL),(2,'developer','ggg',NULL),(3,'marketing','hhh',NULL),(4,'free','fff',NULL),(5,'none','dsdfsef',NULL);
-
 /*Table structure for table `endorse_business` */
 
 DROP TABLE IF EXISTS `endorse_business`;
@@ -56,11 +50,18 @@ CREATE TABLE `endorse_business` (
   `endorser_id` int(11) DEFAULT NULL,
   `provider_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
-/*Data for the table `endorse_business` */
+/*Table structure for table `managers` */
 
-insert  into `endorse_business`(`_id`,`business_id`,`endorser_id`,`provider_id`) values (1,1,6,1),(2,2,6,4),(3,2,6,3),(4,1,6,2);
+DROP TABLE IF EXISTS `managers`;
+
+CREATE TABLE `managers` (
+  `_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `providers` */
 
@@ -73,10 +74,6 @@ CREATE TABLE `providers` (
   `description` text,
   PRIMARY KEY (`_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
-
-/*Data for the table `providers` */
-
-insert  into `providers`(`_id`,`user_id`,`business_id`,`description`) values (2,6,2,'Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. Maecenas malesuada elit lectus felis, malesuada ultricies.'),(3,1,1,'Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. Maecenas malesuada elit lectus felis, malesuada ultricies.'),(4,2,1,'Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. Maecenas malesuada elit lectus felis, malesuada ultricies.'),(5,3,2,'Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. Maecenas malesuada elit lectus felis, malesuada ultricies.'),(6,4,2,'Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. Maecenas malesuada elit lectus felis, malesuada ultricies.'),(7,5,3,'Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. Maecenas malesuada elit lectus felis, malesuada ultricies.'),(8,3,3,'Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. Maecenas malesuada elit lectus felis, malesuada ultricies.'),(9,5,4,NULL);
 
 /*Table structure for table `service_verify` */
 
@@ -94,27 +91,20 @@ CREATE TABLE `service_verify` (
   PRIMARY KEY (`_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
-/*Data for the table `service_verify` */
-
-insert  into `service_verify`(`_id`,`business_id`,`provider`,`receiver`,`amount_spent`,`verify_img`,`status`,`rate`) values (2,1,2,6,34,'ME.jpg',1,4);
-
 /*Table structure for table `users` */
 
 DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
   `_id` int(11) NOT NULL AUTO_INCREMENT,
+  `token` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `profile_url` text,
   `others` text,
   `privileage` int(11) DEFAULT '0',
   PRIMARY KEY (`_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
-
-/*Data for the table `users` */
-
-insert  into `users`(`_id`,`email`,`name`,`profile_url`,`others`,`privileage`) values (1,'peter@example.com','Peter Clark','assets/images/avatar-1.jpg',NULL,0),(2,'nicole@example.com','Nicole Bell','assets/images/avatar-2.jpg',NULL,0),(3,'steven@example.com','Steven Thompson','assets/images/avatar-3.jpg',NULL,0),(4,'ella@example.com','Ella Patterson','assets/images/avatar-4.jpg',NULL,0),(5,'kenneth@example.com','Kenneth Ross','assets/images/avatar-5.jpg',NULL,0),(6,'dandy951121@yahoo.com','Jang','assets/images/jang.png',NULL,1);
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

@@ -69,7 +69,7 @@
                                     Please remail rate for providers here.
                                 </p>
                                 <div class="margin-bottom-15 text-extra-large">
-                                    <uib-rating ng-model="verify_detail.rate" max="5" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null"></uib-rating>
+                                    <uib-rating ng-model="verify_detail.rate" max="5" read-only="verify_detail.status" on-hover="hoveringOver(value)" on-leave="overStar = null"></uib-rating>
                                 </div>
                                 <div class="well">
                                     Rate: <b>{{verify_detail.rate}}</b>

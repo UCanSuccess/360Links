@@ -42,13 +42,16 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
             label: 'Pages'
         }
     }).state('front.pages.user', {
-        url: '/user/:user_id',
+        url: '/user',
         templateUrl: "assets/views/front/user_profile.html",
         title: 'User Profile',
         ncyBreadcrumb: {
             label: 'User Profile'
         },
-        resolve: loadSequence('flow', 'angularFileUpload','userCtrl')
+        resolve: loadSequence('flow', 'angularFileUpload','userCtrl'),
+        params:{
+            user_id:0
+        }
     }).state('front.pages.endorse', {
         url: '/endorse',
         templateUrl: "assets/views/front/endorse.html",
@@ -106,8 +109,15 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
 	})
 
     // Admin-side
-
-    .state('admin', {
+    .state('admin_login', {
+        url: '/admin_login',
+        template: '<div ui-view class="fade-in-right-big smooth"></div>',
+        resolve: loadSequence('adminloginCtrl'),
+        abstract: true
+    }).state('admin_login.admin_signin', {
+        url: '/admin_signin',
+        templateUrl: "assets/views/admin/admin_login.html"
+    }).state('admin', {
         url: "/admin",
         templateUrl: "assets/views/admin/admin.html",
         resolve: loadSequence('chartjs', 'chart.js', 'chatCtrl'),

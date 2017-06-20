@@ -4,6 +4,9 @@
  */
 app.controller('BusinessCtrl', ['$rootScope', "$scope","$state","$http",'cfpLoadingBar','base_url', function ($rootScope, $scope, $state, $http,cfpLoadingBar,base_url) {
     $scope.business = [];
+    if(typeof $rootScope.status===undefined||!$rootScope.status){
+      $state.go('admin_login.admin_signin');
+    }
     $http.post(base_url+'/index.php/apis/getBusinessList').success(function(resp){
       for(var i in resp){
           var temp = {

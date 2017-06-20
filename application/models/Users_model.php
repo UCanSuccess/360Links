@@ -57,5 +57,14 @@ class Users_model extends CI_Model {
             return $this->db->insert_id();
         }
     }
+
+    public function admin_login($username, $password){
+        $this->db->where('user_name', $username);
+        $this->db->where('password', md5($password));
+        $result = $this->db->get('managers');
+        if($result->num_rows())
+            return TRUE;
+        return FALSE;
+    }
 }
 

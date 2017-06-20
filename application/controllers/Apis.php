@@ -29,7 +29,17 @@ class Apis extends CI_Controller {
 		$json_array = json_decode(file_get_contents("php://input"),TRUE);
 		$loginInfo = $json_array['loginInfo'];
 		$id = $this->Users_model->login($loginInfo);
-		echo json_encode($id);
+		echo json_encode((int)$id);
+	}
+
+	public function admin_login()
+	{
+		$this->load->model('Users_model');
+		$json_array = json_decode(file_get_contents("php://input"),TRUE);
+		$username = $json_array['user_name'];
+		$password = $json_array['password'];
+		$status = $this->Users_model->admin_login($username,$password);
+		echo json_encode(array('status'=>$status));
 	}
 	
 	public function getUser()
@@ -153,10 +163,10 @@ class Apis extends CI_Controller {
 		$this->load->model('Endorsed_model');
 		$check = $this->Endorsed_model->check_duplicate($request);
 		if($check){
-			echo json_encode('duplicated');
+			echo json_encode(array('status'=>'duplicated'));
 		}else{
 			$this->Endorsed_model->add_endorse($request);
-			echo json_encode('success');
+			echo json_encode(array('status'=>'success'));
 		}
 	}
 

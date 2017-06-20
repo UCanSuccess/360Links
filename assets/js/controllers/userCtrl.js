@@ -10,8 +10,11 @@ app.controller('UserCtrl', ['$rootScope', "$scope", "flowFactory","$state","$htt
     $scope.friends = [];
     $scope.providers = [];
     var user_id = $stateParams['user_id'];
+    if($rootScope.user!==undefined&&$rootScope.user!=0){
+        user_id = $rootScope.user.user_id;
+    }
     // user_id = 6;
-    if(!user_id){
+    if(user_id==0){
         $state.go('login.signin');
     }
     //test enviroment

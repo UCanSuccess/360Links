@@ -8,7 +8,7 @@ function ($rootScope, $scope, $state, $swipe, $translate, $localStorage, $window
     // Loading bar transition
     // -----------------------------------
     var $win = $($window), $body = $('body');
-    $scope.user = $rootScope.user;
+    //$scope.user = $rootScope.user;
     $scope.horizontalNavbarCollapsed = true;
     $scope.menuInit = function (value) {
         $scope.horizontalNavbarCollapsed = value;

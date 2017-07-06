@@ -170,6 +170,22 @@ class Apis extends CI_Controller {
 		}
 	}
 
+	public function checkEndorse()
+	{
+		$json_array = json_decode(file_get_contents("php://input"),TRUE);
+		$request = array();
+		$request['business_id'] = $json_array['business_id'];
+		$request['endorser_id'] = $json_array['endorser_id'];
+		$request['provider_id'] = $json_array['provider_id'];
+		$this->load->model('Endorsed_model');
+		$check = $this->Endorsed_model->check_duplicate($request);
+		if($check){
+			echo json_encode(array('status'=>'duplicated'));
+		}else{
+			echo json_encode(array('status'=>'success'));
+		}
+	}
+
 	public function requireVerify()
 	{
 		// $this->load->helper('url');

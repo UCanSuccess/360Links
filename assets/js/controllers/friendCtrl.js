@@ -2,7 +2,7 @@
 /** 
   * controller for User Profile Example
 */
-app.controller('FriendCtrl', ['$rootScope', "$scope", "flowFactory","$state","$http","$stateParams",'base_url', function ($rootScope, $scope, flowFactory,$state,$http,$stateParams,base_url) {
+app.controller('FriendCtrl', ['$rootScope', "$scope", "flowFactory","$state","$http","$stateParams",'base_url', 'SweetAlert', function ($rootScope, $scope, flowFactory,$state,$http,$stateParams,base_url,SweetAlert) {
     $scope.userInfo = {};
     $scope.my_business = [];
     $scope.endorsed_business = [];
@@ -44,15 +44,27 @@ app.controller('FriendCtrl', ['$rootScope', "$scope", "flowFactory","$state","$h
 
     $http.post(base_url+'/index.php/apis/getUserBusiness',{user_id:user_id}).success(function(resp){
         for (var i in resp){
+            var endorseflag = false;
             var temp = {
                 header: resp[i].business_name,
                 content: {
+                    business_id : resp[i].business_id,
                     description: resp[i].description,
-                    rate: resp[i].rate
+                    rate: resp[i].rate,
+                    flag: endorseflag
                 }
             }
             $scope.my_business.push(temp);
         }
+        for(var i in $scope.my_business){
+        $http.post(base_url+'/index.php/apis/checkEndorse',{endorser_id:$rootScope.user.user_id,provider_id:user_id, business_id:$scope.my_business[i].content.business_id}).success(function(resp){
+                if(resp.status=='duplicated'){
+                    $scope.my_business[i].content.flag = true; }
+                }).error(function(error){
+                    console.log(error);
+            });
+        }
+        console.log($scope.my_business);
     }).error(function(error){
         console.log(error);
     });
@@ -102,6 +114,28 @@ app.controller('FriendCtrl', ['$rootScope', "$scope", "flowFactory","$state","$h
 
     $scope.goBack = function() {
         window.history.back();
+    }
+
+    $scope.endorseBusiness = function(business){
+      $http.post(base_url+'/index.php/apis/endorseBusiness',{endorser_id:$rootScope.user.user_id,provider_id:user_id, business_id:business.business_id}).success(function(resp){
+        if(resp.status=='success'){
+            SweetAlert.swal({
+                title: "Good job!",
+                text: "You have endorsed successfully!",
+                type: "success",
+                confirmButtonColor: "#007AFF"
+            });
+        }else{
+            SweetAlert.swal({
+                title: "Warning!",
+                text: "You have already endorsed!",
+                type: "warning",
+                confirmButtonColor: "#007AFF"
+            });
+        }
+        }).error(function(error){
+            console.log(error);
+        });
     }
 
     // FB.api('/me/friends', function(response) {

@@ -3,9 +3,9 @@
  * controller for ng-knob
  */
 app.controller('LoginCtrl', ['$rootScope', "$scope","$state",'base_url','$http', function ($rootScope, $scope, $state,base_url,$http) {
+    // $state.go('front.pages.user', {user_id:6});
     $rootScope.$on('event:social-sign-in-success', function(event, userDetails){
-        // $state.go('app.pages.user');
-        console.log(userDetails);
+        // console.log(userDetails);
         var loginInfo = {
             'email':userDetails.email,
             'name':userDetails.name,

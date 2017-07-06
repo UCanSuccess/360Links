@@ -94,7 +94,9 @@
                                                             <uib-rating ng-model="pane.content.rate" max="5" read-only="true"></uib-rating>
                                                             <span class="label" ng-class="{'label-warning': pane.content.rate<2.5, 'label-info': pane.content.rate>=2.5 && pane.content.rate<4, 'label-success': pane.content.rate>=4}" ng-show="true">{{pane.content.rate}}</span>
                                                         </div>
-                                                        <div class="well">                                                            
+                                                        <div class="well">
+                                                            <span class="label label-success" ng-show="pane.content.flag">Endorsed</span>
+                                                            <button type="button" class="btn btn-widte btn-o btn-primary" ng-click="endorseBusiness(pane.content)" ng-show="!pane.content.flag">Endorse</button>
                                                         </div>
                                                     </div>
                                                 </v-pane-content>

@@ -23,15 +23,25 @@ app.controller('providerCtrl', ['$rootScope', "$scope","$state","$http",'$stateP
     //get Provider's business information
     $http.post(base_url+'/index.php/apis/getUserBusiness',{user_id:user_id}).success(function(resp){
         for (var i in resp){
+            var endorseflag = false;
             var temp = {
                 header: resp[i].business_name,
                 content: {
                     business_id : resp[i].business_id,
                     description: resp[i].description,
-                    rate: resp[i].rate
+                    rate: resp[i].rate,
+                    flag: endorseflag
                 }
             }
             $scope.my_business.push(temp);
+        }
+        for(var i in $scope.my_business){
+        $http.post(base_url+'/index.php/apis/checkEndorse',{endorser_id:$rootScope.user.user_id,provider_id:user_id, business_id:$scope.my_business[i].content.business_id}).success(function(resp){
+                if(resp.status=='duplicated'){
+                    $scope.my_business[i].content.flag = true; }
+                }).error(function(error){
+                    console.log(error);
+            });
         }
     }).error(function(error){
         console.log(error);
